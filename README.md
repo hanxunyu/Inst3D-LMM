@@ -4,6 +4,10 @@ This is an official repository for the paper "Inst3D-LMM: Instance-Aware 3D Scen
 
 All results of our Inst3D-LMM are evaluated on the same model **without fine-tuning on specific tasks**.
 
+<div align="left">
+<img src="assets/pipeline.png" width="99%" alt="Inst3D-LLM">
+</div>
+
 ## 🛠️ Preparation
 
 - Prepare the environment:
