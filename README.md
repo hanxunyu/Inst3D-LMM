@@ -1,4 +1,4 @@
-# Inst3D-LMM
+# Inst3D-LMM: Instance-Aware 3D Scene Understanding with Multi-modal Instruction Tuning
 
 This is the official implementation of **Inst3D-LMM: Instance-Aware 3D Scene Understanding with Multi-modal Instruction Tuning** (CVPR 2025) [[Paper]()].
 
