@@ -66,17 +66,17 @@ We are grateful for the open-source contributions of other projects:
 - [VideoChat](https://github.com/OpenGVLab/Ask-Anything/tree/main/video_chat)
 - [Chat3D](https://github.com/Chat-3D)
 
-  ## 🖊️ Citation
+## 🖊️ Citation
 
-  If you find our Inst3D-LMM useful for your research, please consider giving this repository a star and citing our paper as follows:
-  ```
-  @misc{Inst3D-LMM,
-      title={Inst3D-LMM: Instance-Aware 3D Scene Understanding with Multi-modal Instruction Tuning}, 
-      author={Hanxun Yu and Wentong Li and Song Wang and Junbo Chen and Jianke Zhu},
-      year={2025},
-      eprint={2503.00513},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2503.00513}, 
-  }
-  ```
+If you find our Inst3D-LMM useful for your research, please consider giving this repository a star and citing our paper as follows:
+```
+@misc{Inst3D-LMM,
+    title={Inst3D-LMM: Instance-Aware 3D Scene Understanding with Multi-modal Instruction Tuning}, 
+    author={Hanxun Yu and Wentong Li and Song Wang and Junbo Chen and Jianke Zhu},
+    year={2025},
+    eprint={2503.00513},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV},
+    url={https://arxiv.org/abs/2503.00513}, 
+}
+```
