@@ -4,8 +4,6 @@ This is the official implementation of **Inst3D-LMM: Instance-Aware 3D Scene Und
 
 All results of our Inst3D-LMM are evaluated on the same model **without fine-tuning on specific tasks**. 
 
-The full code implementation will be released recently. Please stay tuned.
-
 <div align="left">
 <img src="assets/pipeline.png" width="99%" alt="Inst3D-LLM">
 </div>
