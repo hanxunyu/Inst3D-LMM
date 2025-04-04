@@ -1,0 +1,1 @@
+Here is the information broken down into instance-level and scene-level details. Instance-level Information: The attribute information of all individual objects in the scene: [<REPLACE>]. Scene-level Information: The spatial relationship information of the whole scene: [<REPLACE>].
