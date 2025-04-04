@@ -1,6 +1,10 @@
-# Inst3D-LMM: Instance-Aware 3D Scene Understanding with Multi-modal Instruction Tuning
+<h2 align="center">
+  <b>Inst3D-LMM: Instance-Aware 3D Scene Understanding with Multi-modal Instruction Tuning</b>
 
-This is the official implementation of **Inst3D-LMM: Instance-Aware 3D Scene Understanding with Multi-modal Instruction Tuning** (CVPR 2025 Highlight) [[Paper](https://arxiv.org/pdf/2503.00513)].
+  <b><i>CVPR 2025 Highlight </i> ⭐</b>
+</h2>
+
+This is the official implementation of ["Inst3D-LMM: Instance-Aware 3D Scene Understanding with Multi-modal Instruction Tuning"](https://arxiv.org/pdf/2503.00513).
 
 All results of our Inst3D-LMM are evaluated on the same model **without fine-tuning on specific tasks**. 
 
