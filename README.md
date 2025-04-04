@@ -1,6 +1,6 @@
 # Inst3D-LMM: Instance-Aware 3D Scene Understanding with Multi-modal Instruction Tuning
 
-This is the official implementation of **Inst3D-LMM: Instance-Aware 3D Scene Understanding with Multi-modal Instruction Tuning** (CVPR 2025) [[Paper]()].
+This is the official implementation of **Inst3D-LMM: Instance-Aware 3D Scene Understanding with Multi-modal Instruction Tuning** (CVPR 2025) [[Paper](https://arxiv.org/pdf/2503.00513)].
 
 All results of our Inst3D-LMM are evaluated on the same model **without fine-tuning on specific tasks**. 
 
@@ -65,4 +65,18 @@ We are grateful for the open-source contributions of other projects:
 - [OpenMask3D](https://github.com/OpenMask3D/openmask3d)
 - [VideoChat](https://github.com/OpenGVLab/Ask-Anything/tree/main/video_chat)
 - [Chat3D](https://github.com/Chat-3D)
-- [3DMIT](https://github.com/staymylove/3DMIT)
+
+## 🖊️ Citation
+
+If you find our Inst3D-LMM useful for your research, please consider giving this repository a star and citing our paper as follows:
+```bibtex
+@misc{Inst3D-LMM,
+    title={Inst3D-LMM: Instance-Aware 3D Scene Understanding with Multi-modal Instruction Tuning}, 
+    author={Hanxun Yu and Wentong Li and Song Wang and Junbo Chen and Jianke Zhu},
+    year={2025},
+    eprint={2503.00513},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV},
+    url={https://arxiv.org/abs/2503.00513}, 
+}
+```
