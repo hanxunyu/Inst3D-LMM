@@ -1,5 +1,5 @@
 <h2 align="center">
-  <b><img src="assets/favicon.png" width="50"> Inst3D-LMM: Instance-Aware 3D Scene Understanding with Multi-modal Instruction Tuning</b>
+  <b>Inst3D-LMM: Instance-Aware 3D Scene Understanding with Multi-modal Instruction Tuning</b>
 
   <b>[CVPR 2025 Highlight ⭐]</b>
 </h2>
