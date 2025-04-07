@@ -8,12 +8,12 @@ This is the official implementation of ["Inst3D-LMM: Instance-Aware 3D Scene Und
 
 All results of our Inst3D-LMM are evaluated on the same model **without fine-tuning on specific tasks**. 
 #
-### News
+### 📰 News
 * **`Apr. 5th, 2025`:** Paper is accepted by CVPR 2025 (**Highlight, 2.9%**)!
 * **`Mar. 1st, 2025`:** Paper is available at [arxiv](https://arxiv.org/pdf/2503.00513). ☕️
 * **`Feb. 27th, 2025`:** We released our code! Paper is coming soon. Please stay tuned! ☕️
 
-## Abstract
+## 🔍 Abstract
 
 Despite encouraging progress in 3D scene understanding, it remains challenging to develop an effective Large Multi-modal Model (LMM) that is capable of understanding and reasoning in complex 3D environments. Most previous methods typically encode 3D point and 2D image features separately, neglecting interactions between 2D semantics and 3D object properties, as well as the spatial relationships within the 3D environment. This limitation not only hinders comprehensive representations of 3D scene, but also compromises training and inference efficiency. To address these challenges, we propose a unified Instance-aware 3D Large Multi-modal Model (Inst3D-LMM) to deal with multiple 3D scene understanding tasks simultaneously. To obtain the fine-grained instance-level visual tokens, we first introduce a novel Multi-view Cross-Modal Fusion (MCMF) module to inject the multi-view 2D semantics into their corresponding 3D geometric features. For scene-level relation-aware tokens, we further present a 3D Instance Spatial Relation (3D-ISR) module to capture the intricate pairwise spatial relationships among objects. Additionally, we perform end-to-end multi-task instruction tuning simultaneously without the subsequent task-specific fine-tuning. Extensive experiments demonstrate that our approach outperforms the state-of-the-art methods across 3D scene understanding, reasoning and grounding tasks. 
 
