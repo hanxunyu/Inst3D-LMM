@@ -7,9 +7,9 @@
 This is the official implementation of ["Inst3D-LMM: Instance-Aware 3D Scene Understanding with Multi-modal Instruction Tuning"](https://arxiv.org/pdf/2503.00513).
 
 All results of our Inst3D-LMM are evaluated on the same model **without fine-tuning on specific tasks**. 
-
+#
 ### News
-* **`Apr. 5th, 2025`:** Paper is accepted by CVPR 2025 (Highlight, 2.9%)!
+* **`Apr. 5th, 2025`:** Paper is accepted by CVPR 2025 (**Highlight, 2.9%**)!
 * **`Mar. 1st, 2025`:** Paper is available at [arxiv](https://arxiv.org/pdf/2503.00513). ☕️
 * **`Feb. 27th, 2025`:** We released our code! Paper is coming soon. Please stay tuned! ☕️
 
