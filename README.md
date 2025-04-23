@@ -75,7 +75,7 @@ We are grateful for the open-source contributions of other projects:
 - [Vicuna-v1.5](https://github.com/lm-sys/FastChat)
 - [OpenMask3D](https://github.com/OpenMask3D/openmask3d)
 - [VideoChat](https://github.com/OpenGVLab/Ask-Anything/tree/main/video_chat)
-- [Chat3D](https://github.com/Chat-3D)
+- [Chat-Scene](https://github.com/ZzZZCHS/Chat-Scene)
 
 ## 🖊️ Citation
 
