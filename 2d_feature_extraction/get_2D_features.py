@@ -5,6 +5,7 @@ from data.load import Camera, InstanceMasks3D, Images, PointCloud, get_number_of
 from utils import get_free_gpu, create_out_folder
 from mask_features_computation.features_extractor import FeaturesExtractor
 import torch
+import paths
 import os
 from glob import glob
 

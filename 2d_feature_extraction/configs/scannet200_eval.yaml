@@ -1,7 +1,7 @@
 data:
-  scans_path: '/data/scannet/scans/'
+  scans_path: '${env:SCANS_PATH}'
   masks:
-    masks_path: '/masks' #scannet200
+    masks_path: '${env:MASKS_DIR}' #scannet200
     masks_suffix: '*_masks.pt'
   camera:
     poses_path: 'data/pose/'
@@ -25,13 +25,13 @@ openmask3d:
   num_selected_points: 5
 
 external:
-  sam_checkpoint: '/sam_vit_h_4b8939.pth'
+  sam_checkpoint: '${env:CKPT_SAM}'
   sam_model_type: 'vit_h'
   clip_model: 'ViT-L/14@336px'
 
 output:
   experiment_name: 'experiment'
-  output_directory: ''
+  output_directory: '${env:FEATS2D_DIR}'
   save_crops: False
 
 gpu:
