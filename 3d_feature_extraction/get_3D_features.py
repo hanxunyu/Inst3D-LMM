@@ -2,6 +2,8 @@ from collections import OrderedDict
 import math
 import time
 import wandb
+from pathlib import Path
+from paths import SCANNET_PROC, FEATS3D_DIR
 
 import torch.cuda.amp as amp
 import torch.nn.parallel
@@ -378,7 +380,7 @@ def extract_3d_feat(args, model):
     model.load_state_dict(sd)
     model.eval()
 
-    data_dir = "/processed_mask3d_ins_data/pcd_all/"
+    data_dir = str(SCANNET_PROC / "pcd_all")
     import glob
     from tqdm import tqdm
     import os
@@ -412,7 +414,9 @@ def extract_3d_feat(args, model):
             # pc_feature = pc_feature / pc_feature.norm(dim=-1, keepdim=True)
             outputs[f"{scan_id}_{i:02}"] = pc_feature.squeeze(0).detach().cpu()
 
-    torch.save(outputs, "scannet_mask3d_uni3d_feats.pt")
+    out_file = Path(FEATS3D_DIR) / "scannet_mask3d_uni3d_feats.pt"
+    Path(FEATS3D_DIR).mkdir(parents=True, exist_ok=True)
+    torch.save(outputs, out_file)
 
 
 

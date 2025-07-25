@@ -30,6 +30,7 @@ Despite encouraging progress in 3D scene understanding, it remains challenging t
   conda activate inst3d-lmm # activate it
   bash requirements.sh # installation requirements
   pip install -e . # install current repository in editable mode
+  python -m paths  # create folder structure
   ```
   
 - Download LLM and other foundation models backbone:

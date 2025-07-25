@@ -1,10 +1,11 @@
-#! /bin/bash
+#!/bin/bash
+source "$(dirname "$0")/export_paths.sh"
 
-scannet_dir="/dataset/scannet/"
-segment_result_dir="/dataset/mask3d_scannet_seg_results_wo_dbscan/"
-inst_seg_dir="/dataset/mask3d_scannet_seg_results_wo_dbscan/instance/"
-processed_data_dir="/dataset/processed_mask3d_ins_data/"
-class_label_file="/dataset/scannet/scannetv2-labels.combined.tsv"
+scannet_dir="$SCANS_PATH"
+segment_result_dir="$MASKS_DIR"
+inst_seg_dir="$MASKS_DIR/instance/"
+processed_data_dir="$SCANNET_PROC"
+class_label_file="$SCANS_PATH/scannetv2-labels.combined.tsv"
 segmentor=""
 train_iou_thres=0.75
 
