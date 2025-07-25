@@ -15,6 +15,11 @@ import paths
 print(paths.CKPT_CLIP_EVA02)
 PY
 )
+export TIMM_EVA_GIANT=$(python - <<'PY'
+import paths
+print(paths.TIMM_EVA_GIANT)
+PY
+)
 export CKPT_SAM=$(python - <<'PY'
 import paths
 print(paths.CKPT_SAM)
@@ -48,6 +53,11 @@ PY
 export FEATS2D_DIR=$(python - <<'PY'
 import paths
 print(paths.FEATS2D_DIR)
+PY
+)
+export CKPT_CLIP336=$(python - <<'PY'
+import paths
+print(paths.CKPT_CLIP336)
 PY
 )
 export OUTPUT_ROOT=$(python - <<'PY'

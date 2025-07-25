@@ -27,7 +27,7 @@ openmask3d:
 external:
   sam_checkpoint: '${env:CKPT_SAM}'
   sam_model_type: 'vit_h'
-  clip_model: 'ViT-L/14@336px'
+  clip_model: '${env:CKPT_CLIP336}'
 
 output:
   experiment_name: 'experiment'

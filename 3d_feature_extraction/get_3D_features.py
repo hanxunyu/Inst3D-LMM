@@ -3,7 +3,7 @@ import math
 import time
 import wandb
 from pathlib import Path
-from paths import SCANNET_PROC, FEATS3D_DIR
+from paths import SCANNET_PROC, FEATS3D_DIR, CKPT_CLIP_EVA02, TIMM_EVA_GIANT
 
 import torch.cuda.amp as amp
 import torch.nn.parallel
@@ -60,6 +60,11 @@ def compute_embedding(clip_model, texts, image):
 
 def main(args):
     args, ds_init = parse_args(args)
+
+    if not args.pretrained:
+        args.pretrained = str(CKPT_CLIP_EVA02)
+    if not getattr(args, 'pretrained_pc', None):
+        args.pretrained_pc = str(TIMM_EVA_GIANT)
 
     global best_acc1
 
