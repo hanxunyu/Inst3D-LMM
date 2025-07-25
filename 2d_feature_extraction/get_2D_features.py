@@ -5,7 +5,7 @@ from data.load import Camera, InstanceMasks3D, Images, PointCloud, get_number_of
 from utils import get_free_gpu, create_out_folder
 from mask_features_computation.features_extractor import FeaturesExtractor
 import torch
-import paths
+from paths import FEATS2D_DIR
 import os
 from glob import glob
 
@@ -16,7 +16,7 @@ def main(ctx: DictConfig):
     # device = get_free_gpu(7000) if torch.cuda.is_available() else device
     device = "cuda:0"
     print(f"[INFO] Using device: {device}")
-    out_folder = ctx.output.output_directory
+    out_folder = ctx.output.output_directory or str(FEATS2D_DIR)
     os.chdir(hydra.utils.get_original_cwd())
     if not os.path.exists(out_folder):
         os.makedirs(out_folder)

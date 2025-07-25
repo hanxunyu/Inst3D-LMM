@@ -1,6 +1,6 @@
 import logging
 import os
-import paths
+from paths import CKPT_MASK3D, SCANNET_PROC, MASKS_DIR
 import hydra
 from dotenv import load_dotenv
 from omegaconf import DictConfig
@@ -37,8 +37,15 @@ def get_parameters(cfg: DictConfig):
 
 @hydra.main(config_path="conf", config_name="config_base_class_agn_masks_scannet200.yaml")
 def get_class_agnostic_masks_scannet200(cfg: DictConfig):
-   
+
     os.chdir(hydra.utils.get_original_cwd())
+    if cfg.general.checkpoint is None:
+        cfg.general.checkpoint = str(CKPT_MASK3D)
+    if cfg.general.mask_save_dir is None:
+        cfg.general.mask_save_dir = str(MASKS_DIR)
+    cfg.data.test_dataset.data_dir = str(SCANNET_PROC)
+    cfg.data.validation_dataset.data_dir = str(SCANNET_PROC)
+    cfg.data.train_dataset.data_dir = str(SCANNET_PROC)
     cfg, model, _ = get_parameters(cfg)
     test_dataset = hydra.utils.instantiate(cfg.data.test_dataset)
     c_fn = hydra.utils.instantiate(cfg.data.test_collation)

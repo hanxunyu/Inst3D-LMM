@@ -1,5 +1,12 @@
 # ========================= data ==========================
-from paths import ANNO_ROOT, CKPT_VICUNA, CKPT_CLIP_EVA02, CKPT_SAM
+from paths import (
+    ANNO_ROOT,
+    CKPT_VICUNA,
+    CKPT_CLIP_EVA02,
+    TIMM_EVA_GIANT,
+    CKPT_CLIP336,
+    CKPT_SAM,
+)
 
 anno_root = str(ANNO_ROOT)  # annotation dir
 pc_encoder = "uni3d" # or ulip2
