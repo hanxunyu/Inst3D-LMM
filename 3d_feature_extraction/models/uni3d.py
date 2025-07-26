@@ -35,7 +35,9 @@ def get_metric_names(model):
 
 def create_uni3d(args):  
     # create transformer blocks for point cloud via timm
-    point_transformer = timm.create_model(args.pc_model, checkpoint_path=args.pretrained_pc, drop_path_rate=args.drop_path_rate)
+    point_transformer = timm.create_model(
+        args.pc_model, pretrained=False, drop_path_rate=args.drop_path_rate
+    )
 
     # create whole point cloud encoder
     point_encoder = PointcloudEncoder(point_transformer, args)

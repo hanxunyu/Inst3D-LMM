@@ -1,7 +1,7 @@
 data:
   scans_path: '${env:SCANS_PATH}'
   masks:
-    masks_path: '${env:MASKS_DIR}' #scannet200
+    masks_path: '${env:MASKS_DIR}'
     masks_suffix: '*_masks.pt'
   camera:
     poses_path: 'data/pose/'
@@ -12,7 +12,7 @@ data:
     depths_ext: '.png'
     depth_scale: 1000
   images:
-    images_path: 'data_compressed/color/'  
+    images_path: 'data_compressed/color/'
     images_ext: '.jpg'
 
 openmask3d:
@@ -36,3 +36,4 @@ output:
 
 gpu:
   optimize_gpu_usage: False
+
