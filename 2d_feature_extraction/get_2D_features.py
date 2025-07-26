@@ -4,8 +4,9 @@ import numpy as np
 from data.load import Camera, InstanceMasks3D, Images, PointCloud, get_number_of_images
 from utils import get_free_gpu, create_out_folder
 from mask_features_computation.features_extractor import FeaturesExtractor
+from transformers import CLIPModel, CLIPProcessor
 import torch
-from paths import FEATS2D_DIR
+from paths import FEATS2D_DIR, CKPT_CLIP336, CKPT_SAM
 import os
 from glob import glob
 
@@ -21,6 +22,17 @@ def main(ctx: DictConfig):
     if not os.path.exists(out_folder):
         os.makedirs(out_folder)
     print(f"[INFO] Saving feature results to {out_folder}")
+    if not os.path.exists(ctx.external.sam_checkpoint):
+        raise FileNotFoundError(
+            f"SAM checkpoint not found at {ctx.external.sam_checkpoint}. "
+            f"Please download to {CKPT_SAM}")
+    clip_path = ctx.external.clip_model or str(CKPT_CLIP336)
+    if not os.path.exists(clip_path):
+        raise FileNotFoundError(
+            f"CLIP weights not found at {clip_path}. Please download to {CKPT_CLIP336}")
+    clip_model = CLIPModel.from_pretrained(clip_path, local_files_only=True).to(device)
+    clip_processor = CLIPProcessor.from_pretrained(clip_path, local_files_only=True)
+
     masks_paths = sorted(glob(os.path.join(ctx.data.masks.masks_path, ctx.data.masks.masks_suffix)))
     
     for masks_path in masks_paths:
@@ -54,11 +66,12 @@ def main(ctx: DictConfig):
                         depth_scale=ctx.data.depths.depth_scale)
 
         # 5. Run extractor
-        features_extractor = FeaturesExtractor(camera=camera, 
-                                                clip_model=ctx.external.clip_model, 
-                                                images=images, 
+        features_extractor = FeaturesExtractor(camera=camera,
+                                                clip_model=clip_model,
+                                                clip_processor=clip_processor,
+                                                images=images,
                                                 masks=masks,
-                                                pointcloud=pointcloud, 
+                                                pointcloud=pointcloud,
                                                 sam_model_type=ctx.external.sam_model_type,
                                                 sam_checkpoint=ctx.external.sam_checkpoint,
                                                 vis_threshold=ctx.vis_threshold,

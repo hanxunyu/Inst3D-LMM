@@ -35,7 +35,22 @@ Despite encouraging progress in 3D scene understanding, it remains challenging t
   
 - Download LLM and other foundation models backbone:
   -  We use Vicuna-7B v1.5 ([Hugging Face](https://huggingface.co/lmsys)), the vision encoder from CLIP-ViT-L/14-336px ([Hugging Face](https://huggingface.co/openai/clip-vit-large-patch14-336)) and the ViT-H-based SAM ([Hugging Face](https://huggingface.co/facebook/sam-vit-huge));
-  - Change their path in `scripts/config.py` to the corresponding download location.
+
+### 完全离线准备
+
+1. 运行 `python -m paths --mk` 创建目录结构。
+2. 手动下载以下权重并放置到指定相对路径：
+   - Vicuna‑7B v1.5 → `weights/llm/vicuna-7b-v1.5/`
+   - OpenAI CLIP ViT‑L/14‑336 → `weights/clip/clip-vit-large-patch14-336/`
+   - SAM ViT‑H → `weights/sam/sam_vit_h_4b8939.pth`
+   - Mask3D ckpt → `weights/mask3d/scannet200_val.ckpt`
+   - Uni3D‑g → `weights/uni3d/uni3d_g.pth`
+   - OpenCLIP EVA02‑E‑14‑plus → `weights/open_clip/EVA02-E-14-plus/open_clip_pytorch_model.bin`
+   - timm EVA‑giant‑560 → `weights/timm/eva_giant_patch14_560.m30m_ft_in22k_in1k/`
+3. 本地生成 ScanNet200 processed 数据集至 `datasets/scannet200_processed/`。
+4. `source scripts/export_paths.sh` 后即可运行各脚本。
+
+  - Change their path in `scripts/config.py` to the corresponding download location if different.
   
 - Dataset Preprocessing:
   

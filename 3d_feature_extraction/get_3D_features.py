@@ -28,6 +28,8 @@ from utils.optim import create_optimizer, get_all_parameters, get_loss_scale_for
 from datetime import datetime
 
 import open_clip
+import torch
+
 import models.uni3d as models
 import sys
 import os
@@ -65,6 +67,16 @@ def main(args):
         args.pretrained = str(CKPT_CLIP_EVA02)
     if not getattr(args, 'pretrained_pc', None):
         args.pretrained_pc = str(TIMM_EVA_GIANT)
+
+    if not Path(args.pretrained).exists():
+        raise FileNotFoundError(
+            f"{args.pretrained} not found. Please download to {CKPT_CLIP_EVA02}")
+    if not Path(args.pretrained_pc).exists():
+        raise FileNotFoundError(
+            f"{args.pretrained_pc} not found. Please download to {TIMM_EVA_GIANT}")
+
+    clip_model, _, _ = open_clip.create_model_and_transforms(
+        'EVA02-E-14-plus', pretrained=args.pretrained)
 
     global best_acc1
 
@@ -145,6 +157,10 @@ def main(args):
     model = getattr(models, args.model)(args=args)
     model.to(device)
     model_without_ddp = model
+    state = torch.load(args.pretrained_pc, map_location='cpu')
+    if isinstance(state, dict) and 'state_dict' in state:
+        state = state['state_dict']
+    model.point_encoder.visual.load_state_dict(state, strict=False)
 
     extract_3d_feat(args, model)
     return
