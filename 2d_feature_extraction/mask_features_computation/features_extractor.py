@@ -1,5 +1,5 @@
 
-import clip
+from transformers import CLIPModel, CLIPProcessor
 import numpy as np
 import imageio
 import torch
@@ -104,10 +104,11 @@ class PointProjector:
         return topk_indices_per_mask
     
 class FeaturesExtractor:
-    def __init__(self, 
-                 camera, 
-                 clip_model, 
-                 images, 
+    def __init__(self,
+                 camera,
+                 clip_model: CLIPModel,
+                 clip_processor: CLIPProcessor,
+                 images,
                  masks,
                  pointcloud,
                  sam_model_type,
@@ -119,7 +120,8 @@ class FeaturesExtractor:
         self.device = device
         self.point_projector = PointProjector(camera, pointcloud, masks, vis_threshold, images.indices)
         self.predictor_sam = initialize_sam_model(device, sam_model_type, sam_checkpoint)
-        self.clip_model, self.clip_preprocess = clip.load(clip_model, device)
+        self.clip_model = clip_model.to(device)
+        self.clip_processor = clip_processor
         
     
     def extract_features(self, topk, multi_level_expansion_ratio, num_levels, num_random_rounds, num_selected_points, save_crops, out_folder, optimize_gpu_usage=False):
@@ -164,16 +166,16 @@ class FeaturesExtractor:
                             cropped_img.save(os.path.join(out_folder, f"crop{mask}_{view}_{level}.png"))
                             
                         # I compute the CLIP feature using the standard clip model
-                        cropped_img_processed = self.clip_preprocess(cropped_img)
-                        images_crops.append(cropped_img_processed)
+                        processed = self.clip_processor(images=cropped_img, return_tensors="pt")
+                        images_crops.append(processed.pixel_values[0])
             
             if(optimize_gpu_usage):
                 self.predictor_sam.model.cpu()
                 self.clip_model.to(torch.device('cuda'))                
             if(len(images_crops) > 0):
-                image_input = torch.tensor(np.stack(images_crops))
+                image_input = torch.stack(images_crops).to(self.device)
                 with torch.no_grad():
-                    image_features = self.clip_model.encode_image(image_input.to(self.device)).float()
+                    image_features = self.clip_model.get_image_features(image_input).float()
                     image_features /= image_features.norm(dim=-1, keepdim=True) #normalize
                 
                 mask_clip[mask] = image_features.mean(axis=0).cpu().numpy()

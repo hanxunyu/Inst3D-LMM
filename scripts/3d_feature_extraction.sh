@@ -1,28 +1,30 @@
+#!/bin/bash
+source "$(dirname "$0")/export_paths.sh"
 # NOTE: SET THESE PARAMETERS!
 model=create_uni3d
 
 clip_model="EVA02-E-14-plus" 
-pretrained="/path/to/clip_model/open_clip_pytorch_model.bin" # 
+pretrained="$CKPT_CLIP_EVA02" #
 
 pc_model="eva_giant_patch14_560.m30m_ft_in22k_in1k"
 
-ckpt_path="model.pt"
+ckpt_path="$CKPT_UNI3D"
 
 export OMP_NUM_THREADS=3  # speeds up MinkowskiEngine
 
-SCANS_PATH="/sens2data_train/"
-SCANNET_PROCESSED_DIR="/Mask3D/data/processed/scannet200/"
+SCANS_PATH="$SCANS_PATH"
+SCANNET_PROCESSED_DIR="$SCANNET_PROC"
 # model ckpt paths
-MASK_MODULE_CKPT_PATH="$(pwd)/resources/scannet200_val.ckpt"
-SAM_CKPT_PATH="$(pwd)/resources/sam_vit_h_4b8939.pth"
+MASK_MODULE_CKPT_PATH="$CKPT_MASK3D"
+SAM_CKPT_PATH="$CKPT_SAM"
 
 # output directories to save 3D instances and their features
 EXPERIMENT_NAME="scannet200"
-OUTPUT_DIRECTORY="$(pwd)/output"
+OUTPUT_DIRECTORY="$OUTPUT_ROOT"
 TIMESTAMP=$(date +"%Y-%m-%d-%H-%M-%S")
 OUTPUT_FOLDER_DIRECTORY="${OUTPUT_DIRECTORY}/${TIMESTAMP}-${EXPERIMENT_NAME}"
-MASK_SAVE_DIR="${OUTPUT_FOLDER_DIRECTORY}/masks"
-MASK_FEATURE_SAVE_DIR="${OUTPUT_FOLDER_DIRECTORY}/mask_features"
+MASK_SAVE_DIR="$MASKS_DIR"
+MASK_FEATURE_SAVE_DIR="$FEATS3D_DIR"
 SAVE_VISUALIZATIONS=false #if set to true, saves pyviz3d visualizations
 
 # Paremeters below are AUTOMATICALLY set based on the parameters above:

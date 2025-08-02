@@ -1,5 +1,14 @@
 # ========================= data ==========================
-anno_root = "annotations"  # annotation dir
+from paths import (
+    ANNO_ROOT,
+    CKPT_VICUNA,
+    CKPT_CLIP_EVA02,
+    TIMM_EVA_GIANT,
+    CKPT_CLIP336,
+    CKPT_SAM,
+)
+
+anno_root = str(ANNO_ROOT)  # annotation dir
 pc_encoder = "uni3d" # or ulip2
 segmentor = "mask3d" # or pointgroup
 
@@ -81,9 +90,9 @@ batch_size = 32
 
 # ========================= model ==========================
 model = dict(
-    llama_model_path="/vicunna-7b-v1.5/",
-    clip_path="/CLIP-ViT-L/14-336px",
-    sam_path="/SAM-ViT-H/",
+    llama_model_path=str(CKPT_VICUNA),
+    clip_path=str(CKPT_CLIP_EVA02),
+    sam_path=str(CKPT_SAM),
     model_cls="Inst3D",
     input_dim=1024 if pc_encoder == "uni3d" else 512,#
     img_input_dim=768, # CLIP embedding space

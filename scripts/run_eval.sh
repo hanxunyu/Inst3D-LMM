@@ -1,4 +1,6 @@
-export PYTHONPATH=${PYTHONPATH}:${which_python}:.
+#!/bin/bash
+source "$(dirname "$0")/export_paths.sh"
+export PYTHONPATH="${PYTHONPATH}:${which_python}:." 
 
 evaluate=True
 # try different combination of inference datasets as you want

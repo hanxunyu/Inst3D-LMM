@@ -2,6 +2,8 @@ from collections import OrderedDict
 import math
 import time
 import wandb
+from pathlib import Path
+from paths import SCANNET_PROC, FEATS3D_DIR, CKPT_CLIP_EVA02, TIMM_EVA_GIANT
 
 import torch.cuda.amp as amp
 import torch.nn.parallel
@@ -26,6 +28,8 @@ from utils.optim import create_optimizer, get_all_parameters, get_loss_scale_for
 from datetime import datetime
 
 import open_clip
+import torch
+
 import models.uni3d as models
 import sys
 import os
@@ -58,6 +62,21 @@ def compute_embedding(clip_model, texts, image):
 
 def main(args):
     args, ds_init = parse_args(args)
+
+    if not args.pretrained:
+        args.pretrained = str(CKPT_CLIP_EVA02)
+    if not getattr(args, 'pretrained_pc', None):
+        args.pretrained_pc = str(TIMM_EVA_GIANT)
+
+    if not Path(args.pretrained).exists():
+        raise FileNotFoundError(
+            f"{args.pretrained} not found. Please download to {CKPT_CLIP_EVA02}")
+    if not Path(args.pretrained_pc).exists():
+        raise FileNotFoundError(
+            f"{args.pretrained_pc} not found. Please download to {TIMM_EVA_GIANT}")
+
+    clip_model, _, _ = open_clip.create_model_and_transforms(
+        'EVA02-E-14-plus', pretrained=args.pretrained)
 
     global best_acc1
 
@@ -138,6 +157,10 @@ def main(args):
     model = getattr(models, args.model)(args=args)
     model.to(device)
     model_without_ddp = model
+    state = torch.load(args.pretrained_pc, map_location='cpu')
+    if isinstance(state, dict) and 'state_dict' in state:
+        state = state['state_dict']
+    model.point_encoder.visual.load_state_dict(state, strict=False)
 
     extract_3d_feat(args, model)
     return
@@ -378,7 +401,7 @@ def extract_3d_feat(args, model):
     model.load_state_dict(sd)
     model.eval()
 
-    data_dir = "/processed_mask3d_ins_data/pcd_all/"
+    data_dir = str(SCANNET_PROC / "pcd_all")
     import glob
     from tqdm import tqdm
     import os
@@ -412,7 +435,9 @@ def extract_3d_feat(args, model):
             # pc_feature = pc_feature / pc_feature.norm(dim=-1, keepdim=True)
             outputs[f"{scan_id}_{i:02}"] = pc_feature.squeeze(0).detach().cpu()
 
-    torch.save(outputs, "scannet_mask3d_uni3d_feats.pt")
+    out_file = Path(FEATS3D_DIR) / "scannet_mask3d_uni3d_feats.pt"
+    Path(FEATS3D_DIR).mkdir(parents=True, exist_ok=True)
+    torch.save(outputs, out_file)
 
 
 
