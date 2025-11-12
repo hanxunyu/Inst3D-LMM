@@ -1,7 +1,7 @@
 <h2 align="center">
   <b>Inst3D-LMM: Instance-Aware 3D Scene Understanding with Multi-modal Instruction Tuning</b>
-
-  <b>[CVPR 2025 Highlight ⭐]</b>
+  
+  <b>[CVPR 2025 <i>Highlight</i> ⭐]</b>
 </h2>
 
 This is the official implementation of ["Inst3D-LMM: Instance-Aware 3D Scene Understanding with Multi-modal Instruction Tuning"](https://arxiv.org/pdf/2503.00513).
