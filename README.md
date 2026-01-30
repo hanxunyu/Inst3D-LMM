@@ -82,13 +82,10 @@ We are grateful for the open-source contributions of other projects:
 
 If you find our Inst3D-LMM useful for your research, please consider giving this repository a star and citing our paper as follows:
 ```bibtex
-@misc{Inst3D-LMM,
-    title={Inst3D-LMM: Instance-Aware 3D Scene Understanding with Multi-modal Instruction Tuning}, 
-    author={Hanxun Yu and Wentong Li and Song Wang and Junbo Chen and Jianke Zhu},
-    year={2025},
-    eprint={2503.00513},
-    archivePrefix={arXiv},
-    primaryClass={cs.CV},
-    url={https://arxiv.org/abs/2503.00513}, 
+@article{yu2025inst3d,
+  title={Inst3D-LMM: Instance-Aware 3D Scene Understanding with Multi-modal Instruction Tuning},
+  author={Yu, Hanxun and Li, Wentong and Wang, Song and Chen, Junbo and Zhu, Jianke},
+  journal={arXiv preprint arXiv:2503.00513},
+  year={2025}
 }
 ```
